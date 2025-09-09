@@ -15,12 +15,13 @@ def call_large_matrices_multiplier_service(file):
         url = str(sys.argv[2])
         data = {}
 
+        # file in this case refers to /client/input_matrices/_.txt 
         with open(file, "r") as j:
-            mydata = json.load(j)
+            mydata = json.load(j) # mydata is the json extracted from that file ie {"matrixSize":200 "seed":25}
 
-        data['file'] = mydata
-        id = mydata['seed']
-        data['id'] = str(id)
+        data['file'] = mydata # data['file'] is the mydata json from above
+        id = mydata['seed'] # id is the seed value from the json
+        data['id'] = str(id) # convert the seed value to a string
         headers = {'Content-Type': 'application/json'}
         response = requests.post(url, json=data, headers=headers)
 
