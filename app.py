@@ -35,7 +35,7 @@ def matrix_function():
 
 
     start_time = time.time()
-    # run the function with the matrix and seed values
+    # run the function with the matrix and seed values from the nested dict from the http header
     M, M_transpose = get_m_and_transpose(json_data["file"]["matrixSize"], json_data["file"]["seed"])
     trace_answer = get_trace(M, M_transpose)
     end_time = time.time()
