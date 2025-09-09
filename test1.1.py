@@ -19,14 +19,13 @@ def get_trace(M, M_transpose):
     return(trace)
 
 
-start_time = time.time()
-
-M, M_transpose = get_m_and_transpose(json_data["matrixSize"], json_data["seed"])
-trace_answer = get_trace(M, M_transpose)
-
-end_time = time.time()
-time_taken = end_time - start_time
-print(f"Trace result = {trace_answer} \n Calculation time taken: {time_taken} seconds or rounded: {time_taken:e} seconds")
+def get_time_taken():
+    start_time = time.time()
+    M, M_transpose = get_m_and_transpose(json_data["matrixSize"], json_data["seed"])
+    trace_answer = get_trace(M, M_transpose)
+    end_time = time.time()
+    time_taken = end_time - start_time
+    print(f"Trace result = {trace_answer} \n Calculation time taken: {time_taken} seconds or rounded: {time_taken:e} seconds")
 
 
 
