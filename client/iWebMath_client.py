@@ -12,7 +12,7 @@ import os
 def call_large_matrices_multiplier_service(file):
     try:
 
-        url = str(sys.argv[2])
+        url = str(sys.argv[2]) # flask url
         data = {}
 
         # file in this case refers to /client/input_matrices/_.txt 

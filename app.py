@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, request
-import requests
 import numpy as np
 import time
 
@@ -24,28 +23,26 @@ def get_trace(M, M_transpose):
     return(trace)
 
 
-def get_time_taken():
+
+
+
+# when someone sends a POST request (sends data) to the URL: /api/matrix-function run the following function:
+@app.route('/matrix', methods=['POST'])
+def matrix_function():
+    # get the json data from the http request body
+    json_data = request.get_json() 
+
+
+
     start_time = time.time()
-    M, M_transpose = get_m_and_transpose(json_data["matrixSize"], json_data["seed"])
+    # run the function with the matrix and seed values
+    M, M_transpose = get_m_and_transpose(json_data["file"]["matrixSize"], json_data["file"]["seed"])
     trace_answer = get_trace(M, M_transpose)
     end_time = time.time()
     time_taken = end_time - start_time
-    print(f"Trace result = {trace_answer} \n Calculation time taken: {time_taken} seconds or rounded: {time_taken:e} seconds")
 
-
-
-# a decorator to define the location of the function of the web app
-@app.route('/api/matrix-function', methods=['POST'])
-def matrix_function(): # this function will be run when the URL ('/api/matrix-function) is accessed via a POST request
-    """a function to ...
-    """
-    return jsonify({"message":"endpoint working"})
-
-
-@app.route('/')
-def hello():
-    return ("Sup , this is working so far")
-
+    # information to be returned in json format
+    return jsonify({"id":json_data["id"], "result": trace_answer, "processing_time": time_taken})
 
 
 if __name__ == '__main__':
