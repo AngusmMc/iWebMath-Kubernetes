@@ -1,4 +1,6 @@
-FROM python:3.10.3
-WORKDIR /
+FROM python:3.10.12
+WORKDIR /app
 COPY requirements.txt requirements.txt
-CMD [ "python3", app.py]
+RUN pip3 install -r requirements.txt
+COPY app.py app.py
+CMD [ "python3", "app.py"]

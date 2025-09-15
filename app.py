@@ -27,12 +27,10 @@ def get_trace(M, M_transpose):
 
 
 # when someone sends a POST request (sends data) to the URL: /api/matrix-function run the following function:
-@app.route('/matrix', methods=['POST'])
+@app.route('/api/matrix-function', methods=['POST'])
 def matrix_function():
     # get the json data from the http request body
     json_data = request.get_json() 
-
-
 
     start_time = time.time()
     # run the function with the matrix and seed values from the nested dict from the http header
@@ -46,4 +44,4 @@ def matrix_function():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
