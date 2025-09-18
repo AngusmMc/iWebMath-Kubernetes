@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: math-app-deployment
+  name: iweb-app-deployment
 spec:
   selector:
     matchLabels:
-      app: math-app
+      app: iweb-app
   replicas: 1
   template:
     metadata:
       labels:
-        app: math-app
+        app: iweb-app
     spec:
       containers:
-      - name: math-container
-        image: math-app:latest
+      - name: iweb-container
+        image: iweb-app:latest
         imagePullPolicy: Never
         resources:
           limits:
