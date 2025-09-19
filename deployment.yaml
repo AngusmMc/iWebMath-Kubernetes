@@ -1,25 +1,27 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: apps/v1 # kubernetes API version
+kind: Deployment # defines this object as a deployment object
 metadata:
-  name: iweb-app-deployment
+  name: iweb-app-deployment # name of the deployment
 spec:
-  selector:
+  selector: # tells which pod to manage
     matchLabels:
       app: iweb-app
-  replicas: 1
-  template:
+  replicas: 1 # the number of pod replicas to run at start
+  template: # what the pods should look like
     metadata:
       labels:
         app: iweb-app
     spec:
       containers:
-      - name: iweb-container
-        image: iweb-app:latest
-        imagePullPolicy: Never
-        resources:
+      - name: iweb-container # name of the container inside the pod
+        image: iweb-app:latest # docker image to use
+        imagePullPolicy: Never # use the local image
+        resources: # set the resources that the pod can use
           limits:
-            cpu: "0.5"
+            cpu: "0.5" # maximum the pod can use is half a CPU core
           requests:
-            cpu: "0.5"
+            cpu: "0.5" # minimum it can use is also half a CPU core
         ports:
-        - containerPort: 5000
+        - containerPort: 5000 # the flask app listens on this port inside the container
+
+
