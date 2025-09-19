@@ -3,11 +3,11 @@ kind: Service # define this as a service object
 metadata: # details of the object
   name: iweb-app # name of the project
 spec: # define how the service will behave
-  type: NodePort # allow outside traffic to reach the service from outside the cluster
+  type: NodePort # allow outside traffic to reach the service
   selector: # route traffic
     app: iweb-app
-  ports:
+  ports: # create the external access path
     - protocol: TCP # use TCP for HTTP traffic
       port: 80 # the service listens on this port inside the cluster
-      targetPort: 5000 # the flask app listens on this port inside th pod
+      targetPort: 5000 # the flask app listens on this port inside the pod
       nodePort: 30950 # this port is exposed on each cluster node

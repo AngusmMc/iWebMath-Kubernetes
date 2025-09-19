@@ -5,7 +5,7 @@ metadata:
 spec:
   selector: # tells which pod to manage
     matchLabels:
-      app: iweb-app
+      app: iweb-app 
   replicas: 1 # the number of pod replicas to run at start
   template: # what the pods should look like
     metadata:
@@ -22,6 +22,6 @@ spec:
           requests:
             cpu: "0.5" # minimum it can use is also half a CPU core
         ports:
-        - containerPort: 5000 # the flask app listens on this port inside the container
+        - containerPort: 5000 # the flask app listens on this port inside the container ie the internal port the app uses
 
 
