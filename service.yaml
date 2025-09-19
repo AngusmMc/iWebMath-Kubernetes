@@ -1,13 +1,13 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: iweb-app
-spec:
-  type: NodePort
-  selector:
+apiVersion: v1 # kubernetes API version
+kind: Service # define this as a service object
+metadata: # details of the object
+  name: iweb-app # name of the project
+spec: # define how the service will behave
+  type: NodePort # allow outside traffic to reach the service from outside the cluster
+  selector: # route traffic
     app: iweb-app
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 5000
-      nodePort: 30950
+    - protocol: TCP # use TCP for HTTP traffic
+      port: 80 # the service listens on this port inside the cluster
+      targetPort: 5000 # the flask app listens on this port inside th pod
+      nodePort: 30950 # this port is exposed on each cluster node
