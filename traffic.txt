@@ -1,0 +1,8 @@
+How the flow of traffic goes through each port on the
+
+I run a command on my laptop to access the vm and my app
+traffic goes from my laptop to port 8080 on the VM (the top layer)
+traffic then goes from the VM to the kind cluster which listens on port 30950
+it then goes from the kind cluster to the kubernetes service port on port 80
+then from the service to the pod ie the apps container on port 5000
+then to the flask app itself on port 5000, the flask app is listening on all ports but receives into port 5000 default
